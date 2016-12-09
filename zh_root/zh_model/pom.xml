@@ -5,6 +5,31 @@
     <artifactId>zh_root</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  <packaging>jar</packaging>
   <artifactId>zh_model</artifactId>
   <description>pojo包</description>
+  
+  
+  <dependencies>
+  	<!-- java持久化依赖包 -->
+	<dependency>
+	    <groupId>javax.persistence</groupId>
+	    <artifactId>persistence-api</artifactId>
+	    <version>1.0</version>
+	</dependency>
+	<!-- 引入jackson核心包 -->
+	 <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+      </dependency>
+  </dependencies>
+  
 </project>
