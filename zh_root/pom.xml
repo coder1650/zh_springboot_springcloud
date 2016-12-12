@@ -57,5 +57,6 @@
 		<module>zh_dao</module>
 		<module>zh_web</module>
 		<module>zh_model</module>
+		<module>zh_ali_service</module>
 	</modules>
 </project>

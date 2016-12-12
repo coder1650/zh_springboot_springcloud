@@ -16,5 +16,13 @@ public class PayCpOrderInfoSqlProvider {
 		}}.toString();
 		
 	}
+	
+	public String findByTransId(final String transId){
+		return new SQL(){{
+			SELECT("*");
+			FROM("PAY_CP_ORDER_INFO P");
+			WHERE("P.TRANS_ID=#{transId}");
+		}}.toString();
+	}
 
 }

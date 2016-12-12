@@ -2,8 +2,6 @@ package com.zh.entity.order;
 
 import java.util.Date;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
