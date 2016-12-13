@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			async:false,
+			url : "orderOpenApi/getTransId",
+			data :{
+	            "appId": "5000001436",
+	            "cpUserId":"1000010",
+	            "wareId":2,
+	            "wareName":"线下支付一分钱测试",
+	            "cpOrderNo":"123456",
+	            "applyMoney":1000,
+	            "currency":"0",
+	            "cpReInfo":"测试.....",
+	            "notifyUrl": "zypayh5/front/sh/notify!transPaystate?uid=u0001&"
+	        },
+			type : 'post',
+			dataType : "json",
+			success : function(result) {				
+				res = result;
+			}	        
+		});
+	});
+</script>
+</head>
+<body>
+hello  !
+</body>
+</html>

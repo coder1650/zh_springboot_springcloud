@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zh.constant.ChannelCode;
-import com.zh.demo.User;
-import com.zh.entity.order.PayCpOrderInfo;
-import com.zh.test.remoteService.AliPayRemoteService;
+import com.zh.model.constant.ChannelCode;
+import com.zh.model.demo.User;
+import com.zh.model.entity.order.PayCpOrderInfo;
+import com.zh.model.remoteService.aliService.AliPayRemoteService;
 import com.zh.test.remoteService.FeignRemoteService;
 import com.zh.test.remoteService.UserRemoteService;
 
@@ -47,7 +47,7 @@ public class TestFeignController {
 	
 	@RequestMapping(value="/getPayUrl",method=RequestMethod.GET)
 	public String getPayUrl(){
-		String payUrl = aliPayRemoteService.getPayUrl("121212", ChannelCode.CHANNEL_TYPE.手机网站支付.getType());
+		String payUrl = aliPayRemoteService.getPayUrl("121212", ChannelCode.ALI_CHANNEL_TYPE.手机网站支付.getType(),"","");
 		return payUrl;
 	}
 

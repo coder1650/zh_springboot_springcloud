@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.zh.demo.User;
-import com.zh.mapper.UserMapper;
+import com.zh.dao.mapper.UserMapper;
+import com.zh.model.demo.User;
 
 @RestController
 public class TestController {
