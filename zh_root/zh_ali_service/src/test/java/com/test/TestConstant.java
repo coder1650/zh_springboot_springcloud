@@ -21,7 +21,7 @@ public class TestConstant {
 		user.setAge(18);
 		user.setCreateTime(new Date());
 		user.setLoginPassword("1234556");
-//		String json = null;
+		String json = null;
 		
 //		om.writeValue(json, user);
 	}
