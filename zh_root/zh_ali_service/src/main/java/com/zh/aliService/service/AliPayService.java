@@ -1,5 +1,7 @@
 package com.zh.aliService.service;
 
+import com.alipay.api.AlipayApiException;
+
 public interface AliPayService {
 	
 	/**
@@ -7,6 +9,6 @@ public interface AliPayService {
 	 * @param transId
 	 * @return
 	 */
-	public String getPayUrl(String transId,String cpMerchantId,String payChannelId);
+	public String getPayUrl(String transId,String cpMerchantId,String payChannelId) throws AlipayApiException;
 
 }

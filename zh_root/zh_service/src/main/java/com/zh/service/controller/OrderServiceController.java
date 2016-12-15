@@ -37,7 +37,7 @@ public class OrderServiceController {
 	public String getPayUrl(@RequestParam("transId") String transId,@RequestParam("cpPayMappingId") String cpPayMappingId){
 		SysCpAppPayMapping cpPayMapping = configInfoMapperRemoteService.findCpAppPayMappingById(cpPayMappingId);
 		String payChannelCode = cpPayMapping.getPayChannelCode();
-		String payUrl = null;
+		String payUrl = "";
 		if(payChannelCode.startsWith(ChannelCode.ALI_CHANNEL_CODE)){
 			payUrl = aliPayRemoteService.getPayUrl(transId, payChannelCode,cpPayMapping.getCpMerchantId(),cpPayMapping.getPayChannelId());
 		}

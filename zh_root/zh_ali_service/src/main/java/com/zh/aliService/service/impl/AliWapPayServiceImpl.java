@@ -26,7 +26,7 @@ public class AliWapPayServiceImpl implements AliPayService{
 	private ConfigInfoMapperRemoteService configInfoMapperRemoteService;
 
 	@Override
-	public String getPayUrl(String transId,String cpMerchantId,String payChannelId) {
+	public String getPayUrl(String transId,String cpMerchantId,String payChannelId) throws AlipayApiException {
 		PayCpOrderInfo payCpOrderInfo =  orderMapperService.findByTransId(transId);
 		SysCpMerchantConfig cpMerchantConfig = configInfoMapperRemoteService.findCpMerchantConfigById(cpMerchantId);
 		SysPayChannelConfig payChannelConfig = configInfoMapperRemoteService.findPayChannelConfigById(payChannelId);
@@ -45,15 +45,8 @@ public class AliWapPayServiceImpl implements AliPayService{
 		        "    \"seller_id\":\"2088123456789012\"," +
 		        "    \"product_code\":\"QUICK_WAP_PAY\"" +
 		        "  }");//填充业务参数
-		    try {
-				String form = alipayClient.pageExecute(alipayRequest).getBody();
-				return form;
-			} catch (AlipayApiException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} //调用SDK生成表单
-		
-		return payCpOrderInfo.getTransId();
+		 String form = alipayClient.pageExecute(alipayRequest).getBody();		
+		return form;
 	}
 	
 	
