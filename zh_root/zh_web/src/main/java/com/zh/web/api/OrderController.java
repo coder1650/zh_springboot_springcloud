@@ -45,8 +45,8 @@ public class OrderController {
 	@RequestMapping(value="/getPayUrl",method=RequestMethod.GET)
 	public String getPayUrl(@RequestParam("transId") String transId,@RequestParam("cpPayMappingId") String cpPayMappingId,
 			HttpServletResponse httpResponse) throws IOException{
-//		cpPayMappingId = "aeabf77dc04c11e6b00598be94487602";
-//		transId = "TEST32201612131616123561279";
+		cpPayMappingId = "aeabf77dc04c11e6b00598be94487602";
+		transId = "TEST32201612131616123561279";
 		String payUrl = orderServiceRemoteService.getPayUrl(transId, cpPayMappingId);
 		httpResponse.setContentType("text/html;charset=" + PayConstant.CHARSET);
 		httpResponse.getWriter().write(payUrl);//直接将完整的表单html输出到页面

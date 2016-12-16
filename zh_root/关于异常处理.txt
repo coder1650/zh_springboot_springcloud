@@ -1,0 +1,7 @@
+1、所有的异常全部抛出到Controller层，在Controller层捕获处理。
+	
+2、因为所有服务层接口都是已json字符串的格式返回(@ResponseBody)，所以，写了一个AbstractMappingJacksonResponseBodyAdvice的继承类，在controller的返回值被转化为json前，对返回值进行了封装
+，具体请参考每个项目的AbstractMappingJacksonResponseBodyAdvice类。
+请求成功，服务端正常返回数据，返回值封装到ResultInfo类中，returnCode字段值为：100，httpCode值为：response.status(),data值为服务接口的返回值
+请求失败：
+	服务端出现异常，把错误信息封装到ResultInfo中，returnCode值为：-999，httpCode值为：500，url值为：出现异常的请求链接，msg值为异常信息

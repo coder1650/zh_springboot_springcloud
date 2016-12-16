@@ -25,9 +25,8 @@ public class ConfigInfoApi {
 	 */
 	@RequestMapping(value="/findCpAppPayMappingById",method=RequestMethod.GET)
 	public SysCpAppPayMapping findCpAppPayMappingById(@RequestParam("id") String id){
-//		String str = null;
-//		str.equals("123");
-		return channelConfigInfoMapper.findCpAppPayMappingById(id);
+		SysCpAppPayMapping cpApp = channelConfigInfoMapper.findCpAppPayMappingById(id);
+		return cpApp;
 	}
 	
 	/**

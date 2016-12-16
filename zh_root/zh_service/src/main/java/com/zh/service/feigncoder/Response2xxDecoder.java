@@ -1,4 +1,4 @@
-package com.zh.web.api.feigncoder;
+package com.zh.service.feigncoder;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -17,8 +17,8 @@ import feign.codec.DecodeException;
 import feign.codec.StringDecoder;
 
 @Configuration
-public class Response2xxDecoder extends StringDecoder{
-	
+public class Response2xxDecoder extends StringDecoder {
+
 	@Override
 	public Object decode(Response response, Type type) throws IOException, DecodeException, FeignException {
 		if (response.status() == 404)
@@ -47,6 +47,7 @@ public class Response2xxDecoder extends StringDecoder{
 			globalException.setResultInfo(resultInfo);
 			throw globalException;
 		}
+
 	}
 
 }
