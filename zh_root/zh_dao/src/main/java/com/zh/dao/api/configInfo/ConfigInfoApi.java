@@ -1,5 +1,7 @@
 package com.zh.dao.api.configInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,10 +13,11 @@ import com.zh.model.entity.configInfo.SysCpAppPayMapping;
 import com.zh.model.entity.configInfo.SysCpMerchantConfig;
 import com.zh.model.entity.configInfo.SysPayChannelConfig;
 
+
 @RestController
 @RequestMapping("/configInfoApi")
 public class ConfigInfoApi {
-	
+	private Logger logger = LoggerFactory.getLogger(ConfigInfoApi.class);
 	@Autowired
 	private ChannelConfigInfoMapper channelConfigInfoMapper;
 	
@@ -25,6 +28,7 @@ public class ConfigInfoApi {
 	 */
 	@RequestMapping(value="/findCpAppPayMappingById",method=RequestMethod.GET)
 	public SysCpAppPayMapping findCpAppPayMappingById(@RequestParam("id") String id){
+		logger.info("this is test logback log");
 		SysCpAppPayMapping cpApp = channelConfigInfoMapper.findCpAppPayMappingById(id);
 		return cpApp;
 	}
