@@ -1,4 +1,4 @@
-package com.zh.service.controller;
+package com.zh.service.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

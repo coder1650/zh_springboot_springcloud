@@ -1,10 +1,12 @@
-package com.zh.web.api.exception;
+package com.zh.aliService.exception;
 
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonValue;
@@ -19,9 +21,12 @@ import org.springframework.web.servlet.mvc.method.annotation.AbstractMappingJack
 import com.zh.model.constant.ReturnCode;
 import com.zh.model.customException.GlobalException;
 import com.zh.model.entity.ResultInfo;
+import com.zh.model.util.JsonUtil;
+
 
 @ControllerAdvice
 public class RestExceptionHandler extends AbstractMappingJacksonResponseBodyAdvice{
+	private static final Logger logger = LoggerFactory.getLogger(RestExceptionHandler.class);
 	
 	@ExceptionHandler(value = Exception.class)
     @ResponseBody
@@ -33,9 +38,10 @@ public class RestExceptionHandler extends AbstractMappingJacksonResponseBodyAdvi
 			resultInfo = new ResultInfo();
 			resultInfo.setReturnCode(ReturnCode.SERVICE_ERROR);
 			resultInfo.setHttpStatus(resp.getStatus());
-			resultInfo.setMsg("web层:"+e.getMessage());
+			resultInfo.setMsg("ali_service层:"+e.getMessage());
 			resultInfo.setUrl(req.getRequestURL().toString());
 		}
+		logger.error("RestExceptionHandler catch exception:"+JsonUtil.getString(resultInfo));
         return resultInfo;
     }
 	

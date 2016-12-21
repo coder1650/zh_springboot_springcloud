@@ -1,4 +1,4 @@
-package com.zh.service.feigncoder;
+package com.zh.aliService.feigncoder;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -46,7 +46,7 @@ public class Response2xxDecoder extends StringDecoder {
 			logger.info("request remote service return is not json string,direct this result:"+result);
 			return result;
 		}
-		
+
 		if (ReturnCode.SERVICE_OK.equals(resultInfo.getReturnCode())) {
 			String str = JsonUtil.getString(resultInfo.getData());
 			logger.info("request remote service return is ok,return data is:"+str);

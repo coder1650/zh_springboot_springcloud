@@ -8,7 +8,7 @@
 	</parent>
 	<packaging>jar</packaging>
 	<artifactId>zh_dao</artifactId>
-	
+
 	<dependencies>
 		<!-- 引用其他项目 -->
 		<dependency>
@@ -19,6 +19,11 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
+		<!-- aop -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 		<!-- mybatis dependency jar -->
 		<dependency>

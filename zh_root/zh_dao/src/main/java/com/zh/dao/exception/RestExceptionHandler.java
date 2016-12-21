@@ -1,8 +1,13 @@
 package com.zh.dao.exception;
 
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonValue;
@@ -15,30 +20,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.AbstractMappingJacksonResponseBodyAdvice;
 
 import com.zh.model.constant.ReturnCode;
+import com.zh.model.customException.GlobalException;
 import com.zh.model.entity.ResultInfo;
+import com.zh.model.util.JsonUtil;
 
 @ControllerAdvice
 public class RestExceptionHandler extends AbstractMappingJacksonResponseBodyAdvice{
+	private static final Logger logger = LoggerFactory.getLogger(RestExceptionHandler.class);
 	
 	/**
 	 * 拦截controller层所有的异常
 	 * @param req
 	 * @param e
 	 * @return
+	 * @throws IOException 
 	 */
 	@ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public ResultInfo jsonErrorHandler(HttpServletRequest req, Exception e) {
-		ResultInfo result = new ResultInfo();
-		result.setReturnCode(ReturnCode.SERVICE_ERROR);
-		result.setHttpStatus(ReturnCode.HTTP_EXCEPTION_CODE);
-		String message = "";
-		if(e instanceof NullPointerException){
-			message = "空指针异常:";
+    public ResultInfo jsonErrorHandler(HttpServletRequest req,HttpServletResponse resp, Exception e) throws IOException {
+		ResultInfo resultInfo = null;
+		if(e.getCause() instanceof GlobalException){
+			resultInfo = ((GlobalException) e.getCause()).getResultInfo();
+		}else{
+			resultInfo = new ResultInfo();
+			resultInfo.setReturnCode(ReturnCode.SERVICE_ERROR);
+			resultInfo.setHttpStatus(resp.getStatus());
+			resultInfo.setMsg("service层:"+e.getMessage());
+			resultInfo.setUrl(req.getRequestURL().toString());
 		}
-		result.setMsg("dao层："+message+e.getLocalizedMessage());
-		result.setUrl(req.getRequestURL().toString());
-        return result;
+		logger.error("RestExceptionHandler catch exception:"+JsonUtil.getString(resultInfo));
+        return resultInfo;
     }
 
 	/**

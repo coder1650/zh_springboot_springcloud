@@ -10,7 +10,7 @@
 	<contextName>SpringBootDemo</contextName>
 	<property name="LOG_PATH" value="D:\\log" />
 	<!--设置系统日志目录 -->
-	<property name="APPDIR" value="zh-dao" />
+	<property name="APPDIR" value="zh-service" />
 
 	<!-- 日志记录器，日期滚动记录 -->
 	<appender name="FILEERROR"
@@ -124,8 +124,6 @@
 	</appender>
 
 	<logger name="org.springframework.web" level="DEBUG" />
-	<!-- output sql -->
-	<logger name="com.zh.dao.mapper" level="DEBUG" />
 
 	<!-- 生产环境下，将此级别配置为适合的级别，以免日志文件太多或影响程序性能 -->
 	<root level="INFO">

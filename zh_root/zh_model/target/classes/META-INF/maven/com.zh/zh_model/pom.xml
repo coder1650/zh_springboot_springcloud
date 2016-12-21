@@ -1,39 +1,40 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.zh</groupId>
-    <artifactId>zh_root</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <packaging>jar</packaging>
-  <artifactId>zh_model</artifactId>
-  <description>pojo包</description>
-  
-  
-  <dependencies>
-  	<!-- java持久化依赖包 -->
-	<dependency>
-	    <groupId>javax.persistence</groupId>
-	    <artifactId>persistence-api</artifactId>
-	    <version>1.0</version>
-	</dependency>
-	<dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.zh</groupId>
+		<artifactId>zh_root</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<packaging>jar</packaging>
+	<artifactId>zh_model</artifactId>
+	<description>pojo包</description>
+
+
+	<dependencies>
+		<!-- java持久化依赖包 -->
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
 		</dependency>
-	<!-- 引入jackson核心包 -->
-	 <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-annotations</artifactId>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-      </dependency>
-  </dependencies>
-  
+		<!-- 引入jackson核心包 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+	</dependencies>
+
 </project>

@@ -1,4 +1,4 @@
-package com.zh.service.exception;
+package com.zh.web.exception;
 
 import java.io.IOException;
 
@@ -23,7 +23,6 @@ import com.zh.model.customException.GlobalException;
 import com.zh.model.entity.ResultInfo;
 import com.zh.model.util.JsonUtil;
 
-
 @ControllerAdvice
 public class RestExceptionHandler extends AbstractMappingJacksonResponseBodyAdvice{
 	private static final Logger logger = LoggerFactory.getLogger(RestExceptionHandler.class);
@@ -38,7 +37,7 @@ public class RestExceptionHandler extends AbstractMappingJacksonResponseBodyAdvi
 			resultInfo = new ResultInfo();
 			resultInfo.setReturnCode(ReturnCode.SERVICE_ERROR);
 			resultInfo.setHttpStatus(resp.getStatus());
-			resultInfo.setMsg("service层:"+e.getMessage());
+			resultInfo.setMsg("web层:"+e.getMessage());
 			resultInfo.setUrl(req.getRequestURL().toString());
 		}
 		logger.error("RestExceptionHandler catch exception:"+JsonUtil.getString(resultInfo));
