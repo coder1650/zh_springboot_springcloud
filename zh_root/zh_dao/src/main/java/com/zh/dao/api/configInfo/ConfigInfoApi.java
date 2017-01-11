@@ -1,5 +1,7 @@
 package com.zh.dao.api.configInfo;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zh.dao.mapper.configInfo.ChannelConfigInfoMapper;
+import com.zh.model.entity.configInfo.PayTypeInfo;
 import com.zh.model.entity.configInfo.SysCpAppPayMapping;
 import com.zh.model.entity.configInfo.SysCpMerchantConfig;
 import com.zh.model.entity.configInfo.SysPayChannelConfig;
@@ -53,6 +56,15 @@ public class ConfigInfoApi {
 		return channelConfigInfoMapper.findPayChannelConfigById(id);
 	}
 	
-	
-
+	/**
+	 * 根据应用编号查询该应用支持的支付方式
+	 * @param appId  应用编号
+	 * @param platType 平台类型
+	 *{@link com.zh.model.remoteService.dao.ConfigInfoMapperRemoteService#findPayTypeInfoOfAppId}
+	 * @return
+	 */
+	@RequestMapping(value="/findPayTypeInfoOfAppId",method=RequestMethod.GET)
+	public List<PayTypeInfo> findPayTypeInfoOfAppId(@RequestParam("appId") String appId,@RequestParam("platType") String platType){
+		return channelConfigInfoMapper.findPayTypeInfoOfAppId(appId,platType);
+	}
 }

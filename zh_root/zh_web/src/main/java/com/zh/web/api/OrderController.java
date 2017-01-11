@@ -1,6 +1,7 @@
 package com.zh.web.api;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zh.model.constant.PayConstant;
+import com.zh.model.entity.configInfo.PayTypeInfo;
 import com.zh.model.entity.order.PayCpOrderInfo;
 import com.zh.model.remoteService.service.OrderServiceRemoteService;
 
@@ -34,6 +36,18 @@ public class OrderController {
 	@RequestMapping(value="/getTransId",method=RequestMethod.POST)
 	public String savePayCpOrderInfo(PayCpOrderInfo orderInfo){
 		return orderServiceRemoteService.getTransId(orderInfo);
+	}
+	
+	/**
+	 * 根据app_id查询支持的支付方式
+	 * @param appId
+	 * @param platType
+	 * @return
+	 */
+	@RequestMapping(value="/findPayTypeInfoOfAppId",method=RequestMethod.GET)
+	public List<PayTypeInfo> findPayTypeInfoOfAppId(@RequestParam("appId") String appId,@RequestParam("platType") String platType){
+		List<PayTypeInfo> tt = orderServiceRemoteService.findPayTypeInfoOfAppId(appId, platType);
+		return  tt;
 	}
 	
 	/**

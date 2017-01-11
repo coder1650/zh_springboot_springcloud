@@ -1,0 +1,404 @@
+/* Reset */
+html{
+	background: none;
+	color: #000; 
+	height: 100%; 
+	width: 100%;
+}
+body{
+	font-family: Microsoft YaHei,Tahoma,Arial; 
+	background-color: #fff; 
+	width: 100%;
+}
+body,h1,h2,h3,h4,p,dl,dd,ul,form,input,th,td{
+	margin: 0;
+	padding: 0;
+}
+em{
+	font-style: normal;
+}
+li{
+	list-style: none;
+}
+img{
+	border: none; 
+	vertical-align: top;
+}
+body,html{
+	overflow-x: hidden;
+}
+/* End Reset */
+
+/* Media */
+@media screen and (min-width: 799px) {
+	html {
+		font-size : 18px;
+	}
+}
+@media screen and (max-width: 799px) and (min-width: 639px) {
+	html {
+		font-size : 16px;
+	}
+}
+@media screen and (max-width: 639px) and (min-width: 413px) {
+	html {
+		font-size : 15px;
+	}
+}
+@media screen and (max-width: 413px) and (min-width: 359px){
+	html {
+		font-size : 14px;
+	}
+}
+@media screen and (max-width: 359px) and (min-width: 319px){
+	html {
+		font-size : 13px;
+	}
+}
+/* End Media */
+
+/* Common */
+.clear:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.clear{
+	zoom:1;
+}
+a{
+	text-decoration: none;
+}
+a:focus{
+	outline-style: none;
+	outline-width: 0;
+}
+a:link, a:visited, a:active{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: none;
+}
+.blue{
+	background-color: #05cbd8;
+}
+.cGray{
+	color: #999;
+}
+.left{
+	display: block;
+	float: left;
+}
+.right{
+	display: block;
+	float: right;
+}
+.hide,.none{
+	display: none;
+}
+.show{
+	display: block;
+}
+.verTrue{
+	background-color: #05cbd8;
+	color: #fff;
+}
+.verFalse{
+	background-color: #cdcdcd;
+	color: #727272;
+}
+/* End Common */
+
+/* Main */
+#wrapper{
+	width: 100%;
+	height: 100%;
+}
+.header{
+	position: relative;
+	width: 100%;
+	height: 3.4em;
+	line-height: 3.4em;
+	color: #fff;
+}
+.header h1{
+	font-weight: normal;
+	font-size: 1.2em;
+	position: relative;
+	width: 100%;
+	margin-left: 43%;
+}
+.header h1:before{
+	content: '';
+	display: block;
+	width: 1.5em;
+	height: 1.4em;
+	position: absolute;
+	top: 0.7em;
+	left: -2em;
+	background: url(../images/logo.png) no-repeat;
+	background-size: 1.4em;
+	opacity: 0.85;
+}
+#center{
+	position: absolute;
+	right: 1.6em;
+	top: 1em;
+	height: 2em;
+	font-size: 0.9em;
+	line-height: 2em;
+	text-align: center;
+	cursor: pointer;
+}
+.main{
+	width: 100%;
+}
+.main .content{
+	width: 94%;
+	margin-left: 6%;
+}
+#product, #money{
+	height: 2.6em;
+	line-height: 2.6em;
+}
+#product{
+	border-bottom: 1px solid #dadada;	
+}
+#product span{
+	margin-left: 1em;
+	color: #000;
+}
+
+#money span{
+	margin-left: 1em;
+	color: #eb5353;
+}
+.main .payType{
+	font-weight: normal;
+	font-size: 0.9em;
+	text-indent: 2em;
+	width: 100%;
+	height: 2.2em;
+	line-height: 2.2em;
+	background: #f0f2f2;
+	border-top: 1px solid #d2d2d2;
+	border-bottom: 1px solid #d2d2d2;
+}
+.list{
+	width: 94%;
+	margin-left: 6%;
+} 
+.list li{
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid #dadada;
+	position: relative;
+}
+.list em {
+    color: #939393;
+    margin-left: 0.6em;
+    font-size: 12px;
+}
+.list li:nth-of-type(1) em {
+    background: #ef7575;
+    color: #fff;
+}
+.list img{
+	margin-right: 6px;
+	width: 50px;
+	height: 50px;
+}
+.list span{
+	display: block;
+	height: 22px;
+	width: 22px;
+	border-radius: 50%;
+	background: #f3f3f3;
+	border: 1px solid #b3b3b3;
+	position: absolute;
+	right: 1.6em;
+	top: 14px;
+	box-sizing: border-box;
+}
+.list .active{
+	border: none;
+	background: url(../images/icon.gif) no-repeat;
+}
+.main h3{
+	font-size: 1em;
+	font-weight: normal;
+	text-indent: 6%;
+	height: 3em;
+	line-height: 3em;
+	border-bottom: 1px solid #dadada;
+	position: relative;
+}
+.main h3 span{
+	width: 10px;
+    height: 10px;
+    border-top: 2px solid #05cbd8;
+    border-left: 2px solid #05cbd8;
+    display: block;
+    position: absolute;
+    line-height: 20px;
+    top: 50%;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    right: 2em;
+    margin-top: -7px;
+}
+.btnPay{
+ 	margin: 0.8em 1em 0;
+    height: 2.4em;
+    background: #05cbd8;
+    border-radius: 4px;
+    text-align: center;
+    color: #fff;
+    line-height: 2.4em;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+#footer{
+	margin-top: 1em;
+	text-align: center; 
+	font-size: 0.8em;
+}
+#footer a{
+	color: #00c2ff;
+	margin-left: 0.6em;
+}
+.mask{
+	width: 100%;
+	height: 100%;
+	z-index: 9;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.4);
+}
+#login{
+	z-index: 99;
+	position: fixed;
+	left: 20px;
+	right: 20px;
+	top: 38px;
+	background: #fff;
+}
+.login-title{
+	color: #fff;
+}
+.login-title h2{
+	font-size: 1em;
+	font-weight: normal;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+} 
+.close{
+	width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    display: block;
+}
+.close:before,.close:after{
+    width: 2px;
+    height: 16px;
+    display: block;
+    content: '.';
+    font-size: 0;
+    position: absolute;
+    left: 50%;
+    margin-left: -1px;
+    top: 8px;
+    background-color: #fff;
+}
+.close:before{
+	transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+}
+.close:after{
+	transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+}
+#login p{
+	height: 3em;
+	line-height: 3em;
+	text-indent: 14px;
+	font-size: 0.8em;
+}
+#login form{
+	margin: 0 14px 14px;
+}
+#login input{
+	outline: none;
+	border: none;
+	font-size: 0.9em;
+	height: 2em;
+}
+#login .errTel,#login .errVer{
+	color: #e72356;
+	height: 2em;
+	line-height: 2em;
+}
+#login .loginName,#login .verification{
+	height: 3em;
+	line-height: 3em;
+}
+.loginName label{
+	width: 25%;
+}
+#login #tel{
+	width: 70%;
+	border-bottom: 1px solid #d0d0d0;
+}
+#login #verification{
+	width: 35%;
+	border-bottom: 1px solid #d0d0d0;
+}
+#login #tel:focus,#login #verification:focus{
+	border-color: #05cbd8;
+}
+#getVerification{
+	width: 38%;
+	border-radius: 2px;
+}
+#loginBtn{
+	width: 100%;
+	margin-top: 0.8em;
+	height: 3em; 
+	border-radius: 4px;
+}
+.repay{
+	z-index: 99;
+	position: fixed;
+	left: 20px;
+	right: 20px;
+	top: 100px;
+	background: #fff;
+}
+.repay p{
+	margin: 2em;
+	text-align: center;
+}
+.repay a{
+	display: block;
+	float: left;
+	text-align: center;
+	height: 2.6em;
+	line-height: 2.6em;
+	border-top: 1px solid #d0d0d0;
+}
+.repay a:nth-of-type(1){
+	width: 50%;
+	color: #05cbd8;
+}
+.repay a:nth-of-type(2){
+	width: 50%;
+	color: #fff;
+}
+/* End Main */

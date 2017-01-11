@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <meta name="format-detection" content="telephone=no">
+      <title>H5收银台</title>
+      <link rel="stylesheet" href="../css/cashier_h5.css"/>
+</head>
+<body>
+      <article id="wrapper">
+            <header class="header blue clear">
+                  <h1 class="left">中国移动</h1>
+                  <span id="center" class="right">个人中心</span>
+             </header>
+            <section class="main">
+                  <div class="content cGray">
+                        <p id="product">商品名称<span></span></p>
+                        <p id="money">应付金额<span></span></p>
+                  </div>
+                  <h2 class="payType cGray">请选择支付方式</h2>
+                  <ul class="list">
+                  </ul>
+                  <h3 class="hide">其他支付方式<span></span></h3>
+                  <div class="btnPay">
+                        <p>
+                              确定支付&nbsp
+                              <span></span>
+                        </p>
+                  </div>
+            </section>
+            <footer id="footer" class="cGray">
+                  <p>
+                        客服电话：10085
+                        <a href="./service.html">服务中心</a>
+                  </p>
+            </footer> 
+      </article>
+      <!-- #wrapper END -->
+      <div class="mask hide"></div>
+      <div id="login">
+            <div class="login-title blue hide">     
+                  <h2>登录移动帐号</h2>
+                   <a href="javascript:void(0);" class="close"></a>
+             </div>
+             <p class="cGray hide">您当前未登录，请登录</p>
+             <form action="" class="hide">
+                  <div class="loginName">
+                        <label for="tel" class="cGray">手机号：</label>
+                        <input type="text" name="loginName" id="tel" placeholder="请输入中国移动手机号码" pattern="\d{11}" maxlength="11">
+                  </div>
+                  <p class="errTel hide">请输入中国移动手机号码</p>
+                  <div class="verification">
+                        <label for="tel" class="cGray">验证码：</label>
+                        <input type="text" name="verification" placeholder="请输入验证码" id="verification"  maxlength="6" pattern="\d{6}">
+                        <input type="button" id="getVerification" value="点击获取" class="verFalse">
+                  </div>
+                  <p class="errVer hide">验证码错误</p>
+                  <input type="submit" value="登录" id="loginBtn" class="verFalse">
+             </form>
+      </div>
+      <div class="repay hide">
+            <p class="clear">该商品已经下单，如果您已经支付成功，请查询支付结果，避免由于重复支付造成您的经济损失。</p>
+            <a href="javascript:void(0);">继续支付</a>
+            <a href="javascript:void(0);" class="blue">查询支付结果</a>
+      </div>
+      <script src="../lib/zepto.min.js"></script>
+      <script type="text/javascript" src="../../js/h5/payindex.js"></script>
+      <script type="text/javascript" src="../../js/h5/cashier.js"></script>
+</body>
+</html>

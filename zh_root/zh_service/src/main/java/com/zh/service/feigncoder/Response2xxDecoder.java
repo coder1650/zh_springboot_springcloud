@@ -2,11 +2,13 @@ package com.zh.service.feigncoder;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 
+import com.fasterxml.jackson.databind.JavaType;
 import com.zh.model.constant.ReturnCode;
 import com.zh.model.customException.GlobalException;
 import com.zh.model.entity.ResultInfo;
@@ -51,9 +53,10 @@ public class Response2xxDecoder extends StringDecoder {
 			String str = JsonUtil.getString(resultInfo.getData());
 			logger.info("request remote service return is ok,return data is:"+str);
 			try {
-				return JsonUtil.convertStringToObject(str, Class.forName(type.getTypeName()));
-			} catch (ClassNotFoundException e) {
-				String msg = "bind data to controller return value error:ClassNotFoundException";
+				String typeName = type.getTypeName();
+				return convertStringToObject(str, typeName);
+			} catch (Exception e) {
+				String msg = "bind data to controller return value error:"+e.getCause().getMessage();
 				GlobalException globalException = new GlobalException(msg);
 				globalException.setResultInfo(resultInfo);
 				logger.error(msg);
@@ -66,6 +69,20 @@ public class Response2xxDecoder extends StringDecoder {
 			throw globalException;
 		}
 
+	}
+	
+	
+	private Object convertStringToObject(String source,String  typeName) throws Exception{
+		if(typeName.contains("java.util.List")){
+			int beginIndex = typeName.indexOf("<");
+			int endIndex = typeName.indexOf(">");
+			String className = typeName.substring(beginIndex+1, endIndex);
+			Class<?> c = Class.forName(className);
+			JavaType javaType = JsonUtil.getCollectionType(List.class, c);
+			return JsonUtil.convertStringToObject(source, javaType);
+		}else{
+			return JsonUtil.convertStringToObject(source, Class.forName(typeName));
+		}
 	}
 
 }

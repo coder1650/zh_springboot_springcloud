@@ -24,7 +24,7 @@ public class PayCpOrderInfo{
 
     private String currency;
 
-    private String cpUserId;
+    private String userId;
 
     private String cpReInfo;
 
@@ -115,15 +115,15 @@ public class PayCpOrderInfo{
         this.currency = currency == null ? null : currency.trim();
     }
 
-    public String getCpUserId() {
-        return cpUserId;
-    }
+    public String getUserId() {
+		return userId;
+	}
 
-    public void setCpUserId(String cpUserId) {
-        this.cpUserId = cpUserId == null ? null : cpUserId.trim();
-    }
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-    public String getCpReInfo() {
+	public String getCpReInfo() {
         return cpReInfo;
     }
 

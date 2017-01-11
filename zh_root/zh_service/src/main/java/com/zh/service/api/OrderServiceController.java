@@ -1,5 +1,7 @@
 package com.zh.service.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zh.model.constant.ChannelCode;
+import com.zh.model.entity.configInfo.PayTypeInfo;
 import com.zh.model.entity.configInfo.SysCpAppPayMapping;
 import com.zh.model.entity.order.PayCpOrderInfo;
 import com.zh.model.remoteService.aliService.AliPayRemoteService;
@@ -31,6 +34,19 @@ public class OrderServiceController {
 		orderInfo.setTransId(transId);
 		orderMapperService.insertPayCpOrderInfo(orderInfo);
 		return transId;
+	}
+	
+	/**
+	 * 根据app_id查询支持的支付方式
+	 * @param appId
+	 * @param platType
+	 * {@link com.zh.model.remoteService.service.OrderServiceRemoteService#findPayTypeInfoOfAppId}
+	 * @return
+	 */
+	@RequestMapping(value="/findPayTypeInfoOfAppId",method=RequestMethod.GET)
+	public List<PayTypeInfo> findPayTypeInfoOfAppId(@RequestParam("appId") String appId,@RequestParam("platType") String platType){
+		List<PayTypeInfo> payTypeInfos = configInfoMapperRemoteService.findPayTypeInfoOfAppId(appId, platType);
+		return payTypeInfos;
 	}
 	
 	@RequestMapping(value="/getPayUrl",method=RequestMethod.GET)
