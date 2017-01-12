@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.zh.model.entity.configInfo.PayTypeInfo;
 import com.zh.model.entity.configInfo.SysCpAppPayMapping;

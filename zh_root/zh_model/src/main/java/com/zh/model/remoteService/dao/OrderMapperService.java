@@ -22,6 +22,12 @@ public interface OrderMapperService {
 	@RequestMapping(value="/orderApi/insert",method=RequestMethod.POST)
 	public String insertPayCpOrderInfo(PayCpOrderInfo payCpOrderInfo);
 	
-//	public SysCpAppPayMapping findCpAppPayMappingById(@RequestParam("id") String id);
-
+	/**
+	 * 根据trans_id查询订单支付状态
+	 * @param transId
+	 * @return
+	 */
+	@RequestMapping(value="/orderApi/findPayStateOfOrderByTransId",method=RequestMethod.GET)
+	public String findPayStateOfOrderByTransId(@RequestParam("transId") String transId);
+	
 }

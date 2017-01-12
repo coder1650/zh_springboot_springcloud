@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zh.model.constant.ChannelCode;
+import com.zh.model.constant.PayStateConstant;
 import com.zh.model.entity.configInfo.PayTypeInfo;
 import com.zh.model.entity.configInfo.SysCpAppPayMapping;
 import com.zh.model.entity.order.PayCpOrderInfo;
@@ -28,7 +29,7 @@ public class OrderServiceController {
 	@Autowired
 	private AliPayRemoteService aliPayRemoteService;
 	
-	@RequestMapping(value="/getTransId",method=RequestMethod.POST)
+	@RequestMapping(value="/getTransId",method=RequestMethod.POST,produces="application/json")
 	public String savePayCpOrderInfo(@RequestBody PayCpOrderInfo orderInfo){
 		String transId = CreateTransId.getTransId();
 		orderInfo.setTransId(transId);
@@ -43,13 +44,39 @@ public class OrderServiceController {
 	 * {@link com.zh.model.remoteService.service.OrderServiceRemoteService#findPayTypeInfoOfAppId}
 	 * @return
 	 */
-	@RequestMapping(value="/findPayTypeInfoOfAppId",method=RequestMethod.GET)
+	@RequestMapping(value="/findPayTypeInfoOfAppId",method=RequestMethod.GET,produces="application/json")
 	public List<PayTypeInfo> findPayTypeInfoOfAppId(@RequestParam("appId") String appId,@RequestParam("platType") String platType){
 		List<PayTypeInfo> payTypeInfos = configInfoMapperRemoteService.findPayTypeInfoOfAppId(appId, platType);
 		return payTypeInfos;
 	}
 	
-	@RequestMapping(value="/getPayUrl",method=RequestMethod.GET)
+	/**
+	 * 根据trans_id查询订单信息
+	 * @param transId
+	 * {@link com.zh.model.remoteService.service.OrderServiceRemoteService#findByTransId}
+	 * @return
+	 */
+	@RequestMapping(value="findByTransId",method=RequestMethod.GET,produces="application/json")
+	public PayCpOrderInfo findByTransId(@RequestParam("transId") String transId){
+		return orderMapperService.findByTransId(transId);
+	}
+	
+	/**
+	 * 判断指定trans_id的订单是否已经支付
+	 * @param transId
+	 * @return
+	 */
+	@RequestMapping(value="isPayOfTransId",method=RequestMethod.GET,produces="application/json")
+	public boolean isPayOfTransId(@RequestParam("transId") String transId){
+		String payState = orderMapperService.findPayStateOfOrderByTransId(transId);
+		if(PayStateConstant.PAY_SUCCESS.equals(payState)){
+			return true;
+		}
+		return false;
+		
+	}
+	
+	@RequestMapping(value="/getPayUrl",method=RequestMethod.GET,produces="application/json")
 	public String getPayUrl(@RequestParam("transId") String transId,@RequestParam("cpPayMappingId") String cpPayMappingId){
 		SysCpAppPayMapping cpPayMapping = configInfoMapperRemoteService.findCpAppPayMappingById(cpPayMappingId);
 		String payChannelCode = cpPayMapping.getPayChannelCode();

@@ -51,9 +51,10 @@ public class Response2xxDecoder extends StringDecoder{
 			String str = JsonUtil.getString(resultInfo.getData());
 			logger.info("request remote service return is ok,return data is:"+str);
 			try {
-				return JsonUtil.convertStringToObject(str, Class.forName(type.getTypeName()));
-			} catch (ClassNotFoundException e) {
-				String msg = "bind data to controller return value error:ClassNotFoundException";
+				String typeName = type.getTypeName();
+				return JsonUtil.convertStringToObject(str, typeName);
+			} catch (Exception e) {
+				String msg = "bind data to controller return value error:"+e.getCause().getMessage();
 				GlobalException globalException = new GlobalException(msg);
 				globalException.setResultInfo(resultInfo);
 				logger.error(msg);

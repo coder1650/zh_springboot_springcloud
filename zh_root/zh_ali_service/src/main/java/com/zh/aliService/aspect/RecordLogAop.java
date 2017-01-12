@@ -15,6 +15,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zh.model.constant.ReturnCode;
+import com.zh.model.entity.ResultInfo;
+import com.zh.model.util.JsonUtil;
 
 /**
  * 定义环绕通知，用于拦截所有controller的入参和出参
@@ -62,6 +65,16 @@ public class RecordLogAop {
 			}
 			throw e;
 		}
+		
+		// 由于当controller直接返回支付串时，是不走MappingJackson2HttpMessageConverter这个类的，所以只能在这里把返回值包装到ResultInfo中
+		if (result instanceof String) {
+			ResultInfo resultInfo = new ResultInfo();
+			resultInfo.setReturnCode(ReturnCode.SERVICE_OK);
+			resultInfo.setHttpStatus(200);
+			resultInfo.setData(result);
+			return JsonUtil.convertObjectToString(resultInfo);
+		}
+		
 		return result;
 
 	}

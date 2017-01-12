@@ -21,5 +21,18 @@ public interface OrderServiceRemoteService {
 	
 	@RequestMapping(value="/orderService/findPayTypeInfoOfAppId",method=RequestMethod.GET)
 	public List<PayTypeInfo> findPayTypeInfoOfAppId(@RequestParam("appId") String appId,@RequestParam("platType") String platType);
+	
+	
+	@RequestMapping(value="/orderService/findByTransId",method=RequestMethod.GET)
+	public PayCpOrderInfo findByTransId(@RequestParam("transId") String transId);
+	
+	/**
+	 * 判断指定trans_id的订单是否已经支付
+	 * @param transId
+	 * @return
+	 */
+	@RequestMapping(value="/orderService/isPayOfTransId",method=RequestMethod.GET)
+	public boolean isPayOfTransId(@RequestParam("transId") String transId);
+	
 
 }

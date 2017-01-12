@@ -136,7 +136,7 @@ a:hover{
 	position: absolute;
 	top: 0.7em;
 	left: -2em;
-	background: url(../images/logo.png) no-repeat;
+	background: url(../../images/h5/logo.png) no-repeat;
 	background-size: 1.4em;
 	opacity: 0.85;
 }
@@ -222,7 +222,7 @@ a:hover{
 }
 .list .active{
 	border: none;
-	background: url(../images/icon.gif) no-repeat;
+	background: url(../../images/h5/icon.gif) no-repeat;
 }
 .main h3{
 	font-size: 1em;

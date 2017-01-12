@@ -47,6 +47,8 @@ public class RestExceptionHandler extends AbstractMappingJacksonResponseBodyAdvi
 	/**
 	 * 拦截：当controller的方法上有@ResponseBody注解时，返回值在序列化为json之前，会调用该方法
 	 * Invoked only if the converter type is {@code MappingJackson2HttpMessageConverter}
+	 * 由于当controller直接返回支付串时，是不走MappingJackson2HttpMessageConverter这个类的，所以只能在
+	 * {@link com.zh.web.aspect.RecordLogAop#doAround}类中把返回值包装到ResultInfo中
 	 */
 	@Override
 	protected void beforeBodyWriteInternal(MappingJacksonValue bodyContainer, MediaType contentType,

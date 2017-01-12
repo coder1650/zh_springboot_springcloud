@@ -19,6 +19,9 @@ public interface PayCpOrderInfoMapper {
 	@SelectProvider(type=PayCpOrderInfoSqlProvider.class,method="findByTransId")
 	public PayCpOrderInfo findByTransId(@Param("transId") String tansId);
 	
+	@SelectProvider(type=PayCpOrderInfoSqlProvider.class,method="findPayStateOfOrderByTransId")
+	public String findPayStateOfOrderByTransId(@Param("transId") String transId);
+	
 	
 
 }

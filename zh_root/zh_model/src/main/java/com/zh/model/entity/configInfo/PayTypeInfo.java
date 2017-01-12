@@ -21,6 +21,11 @@ public class PayTypeInfo {
 	 * 支付渠道编码
 	 */
 	private int payChannelCode;
+	
+	/**
+	 * 支付方式对应的logo
+	 */
+	private String imageLogoUrl;
 
 	public String getAppId() {
 		return appId;
@@ -45,8 +50,13 @@ public class PayTypeInfo {
 	public void setPayChannelCode(int payChannelCode) {
 		this.payChannelCode = payChannelCode;
 	}
-	
-	
-	
 
+	public String getImageLogoUrl() {
+		return imageLogoUrl;
+	}
+
+	public void setImageLogoUrl(String imageLogoUrl) {
+		this.imageLogoUrl = imageLogoUrl;
+	}
+	
 }

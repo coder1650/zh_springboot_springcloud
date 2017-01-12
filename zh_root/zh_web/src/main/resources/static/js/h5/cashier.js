@@ -1,4 +1,5 @@
 $(function() {
+	getOrderInfoBytransId();
 	// 获得支付方式列表
 	getPaytype();
 	//确认付款
@@ -7,7 +8,7 @@ $(function() {
 			var repayResult=checkPayState();
 			var target = $(".list li").find(".active").parent();
 			var channelcode = target.attr('typeId');
-			if(repayResult.bean.payState==='0'){
+			if(repayResult){
 				if(channelcode!=null && channelcode!=''){
 					window.location.href = "../beg?payChannelCode="+channelcode+"&transId="+transid;
 				}else{
@@ -33,7 +34,9 @@ $(function() {
 	});
 });
 //获取html后请求的参数
-var transid = getQueryString("transid");
+var transId = getQueryString("transId");
+var appId = getQueryString("appId");
+var platType = getQueryString("platType");
 var res=null;
 function getQueryString(name) {
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -42,72 +45,60 @@ function getQueryString(name) {
 		return unescape(r[2]);
 	return null;
 }
-if (transid != null) {
-	function getPaytype() {
-		res= getOrderInfoBytransId();
-		var cporderInfo = '';
-		if(res.returnCode ==='1000'){
-			cporderInfo = res.bean;
-		}		
-		if(cporderInfo != ''){
-			$.ajax({
-				url : "/zypayh5/front/sh/opencashier!getPaytypeInfo",
-				data : {
-					"uid" : "u0001",
-					"appid" : cporderInfo.appId,
-					"applymoney" : cporderInfo.payMoney
-				},
-				type : 'post',
-				async : false,
-				dataType : "json",
-				success : function(result) {
-					if (result.returnCode == '1000') {
-						var str='';
-						$(result.beans).each(function(index){
-							str+='<li typeId="'+this.pay_channel_code+'"><img src="'+this.image_logo_url+'"/><a>'+this.channel_name+'</a><em></em><span></span></li>';
-							if(index>1){
-								$('.main').find('h3').removeClass();
-							};
-						});
-						$('.list').html(str);
-						$('.list li').each(function(index){
-							$('.list li').eq(0).find('span').addClass('active');
-							if(index>1){
-								$(this).addClass('hide');
-							}
-						});
-						$('.list em').eq(0).html('官方推荐');
-						$('.list li[typeId="100303"]').find('em').html('支持信用卡分期付款');
-						choosePayment();
-					} else {
-						window.location.href = "error.jsp?errMsg="+result.returnMessage;
-					}
+
+//查询支付方式
+if(appId != null && platType != null){
+	function getPaytype(){
+		$.ajax({
+			url : "../../orderOpenApi/findPayTypeInfoOfAppId",
+			data : {
+				"appId" : appId,
+				"platType" : platType
+			},
+			type : 'get',
+			async : false,
+			dataType : "json",
+			success : function(result) {
+				if (result.returnCode == '100') {
+					var str='';
+					$(result.data).each(function(index){
+						str+='<li typeId="'+this.payChannelCode+'"><img src="'+this.imageLogoUrl+'"/><a>'+this.payChannelName+'</a><em></em><span></span></li>';
+						if(index>1){
+							$('.main').find('h3').removeClass();
+						};
+					});
+					$('.list').html(str);
+					$('.list li').each(function(index){
+						$('.list li').eq(0).find('span').addClass('active');
+						if(index>1){
+							$(this).addClass('hide');
+						}
+					});
+					$('.list em').eq(0).html('官方推荐');
+					$('.list li[typeId="100303"]').find('em').html('支持信用卡分期付款');
+					choosePayment();
 				}
-			});
-		}else {
-			window.location.href = "error.jsp?errMsg="+res.returnMessage;
-		}
+			}
+		});
 	}
-} else {
-	window.location.href = "error.html";
 }
+
 // 根据交易流水号获得订单详情信息
 function getOrderInfoBytransId() {
 	var cporderInfo = '';
 	// 向后台发送处理数据
 	$.ajax({
-		url : "/zypayh5/front/sh/opencashier!getCommonDetail",
+		url : "../../orderOpenApi/findOrderInfoByTransId",
 		data : {
-			"uid" : "u0001",
-			"transid" : transid
+			"transId" : transId
 		},
-		type : 'post',
+		type : 'get',
 		async : false,
 		dataType : "json",
 		success : function(result) {
-			$('#product').find('span').html(result.bean.wareName);
-			$('#money').find('span').html(result.bean.payMoney+'元');
-			$('.btnPay').find('span').html(result.bean.payMoney+'元');
+			$('#product').find('span').html(result.data.wareName);
+			$('#money').find('span').html(result.data.payMoney+'元');
+			$('.btnPay').find('span').html(result.data.payMoney+'元');
 			cporderInfo = result;
 		}
 	});
@@ -117,18 +108,15 @@ function getOrderInfoBytransId() {
 function checkPayState () {
 	var payState='';
 	$.ajax({
-		url : "/zypayh5/front/sh/opencashier!getOrderInfoByAcid",
+		url : "../../orderOpenApi/isPayOfTransId",
 		data : {
-			"uid":"u0001",
-			"appid" : res.bean.appId,
-			"cporderid" : res.bean.cpOrderNo,
-			"transid" : transid
+			"transId" : transId
 		},
-		type : 'post',
+		type : 'get',
 		async : false,
 		dataType : "json",
 		success : function(result) {	
-			payState = result;
+			payState = result.data;
 		}
 	});
 	return payState;

@@ -29,7 +29,7 @@ public class ConfigInfoApi {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value="/findCpAppPayMappingById",method=RequestMethod.GET)
+	@RequestMapping(value="/findCpAppPayMappingById",method=RequestMethod.GET,produces="application/json")
 	public SysCpAppPayMapping findCpAppPayMappingById(@RequestParam("id") String id){
 		logger.info("this is test logback log");
 		SysCpAppPayMapping cpApp = channelConfigInfoMapper.findCpAppPayMappingById(id);
@@ -41,7 +41,7 @@ public class ConfigInfoApi {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value="/findCpMerchantConfigById",method=RequestMethod.GET)
+	@RequestMapping(value="/findCpMerchantConfigById",method=RequestMethod.GET,produces="application/json")
 	public SysCpMerchantConfig findCpMerchantConfigById(@RequestParam("id") String id){
 		return channelConfigInfoMapper.findCpMerchantConfigById(id);
 	}
@@ -51,7 +51,7 @@ public class ConfigInfoApi {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value="/findPayChannelConfigById",method=RequestMethod.GET)
+	@RequestMapping(value="/findPayChannelConfigById",method=RequestMethod.GET,produces="application/json")
 	public SysPayChannelConfig findPayChannelConfigById(@RequestParam("id") String id){
 		return channelConfigInfoMapper.findPayChannelConfigById(id);
 	}
@@ -63,7 +63,7 @@ public class ConfigInfoApi {
 	 *{@link com.zh.model.remoteService.dao.ConfigInfoMapperRemoteService#findPayTypeInfoOfAppId}
 	 * @return
 	 */
-	@RequestMapping(value="/findPayTypeInfoOfAppId",method=RequestMethod.GET)
+	@RequestMapping(value="/findPayTypeInfoOfAppId",method=RequestMethod.GET,produces="application/json")
 	public List<PayTypeInfo> findPayTypeInfoOfAppId(@RequestParam("appId") String appId,@RequestParam("platType") String platType){
 		return channelConfigInfoMapper.findPayTypeInfoOfAppId(appId,platType);
 	}

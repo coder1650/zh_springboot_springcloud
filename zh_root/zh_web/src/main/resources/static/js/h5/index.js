@@ -1,6 +1,6 @@
 function beginToPay() {
 	debugger
-	var appUserId = $("#userid").val();
+	var appUserId = $("#userId").val();
 	var date = new Date();
 	var cporderid = "2017"+date.getDay()+date.getMilliseconds();
 	var price = $("#price").val();
@@ -11,15 +11,12 @@ function beginToPay() {
 		$("#code_msg").text("");
 	}
 	var res = serverOrder(appUserId, cporderid,price);
-//	var res = offlineServerOrder(appUserId, cporderid,price);
 	if(res !== null && res !== ""){
 		var redirecturl = "zypayh5/front/sh/calbakpay!transPaystate?uid=u0001";
 		var cpurl = "zypayh5/index.html";
-		var reqStr = getEctryData(transid,redirecturl,cpurl);
-		window.location.href =  "zypayh5/h5/scanexbegpay?"+res;
+//		var reqStr = getEctryData(transid,redirecturl,cpurl);
+		window.location.href =  "cashier_h5.html?appId=5000001436&platType=1&transId="+res;
 		//"http://localhost:8090/zypaypc/pc/exbegpay?"+reqStr
-	}else{
-		window.location.href = "html/error.jsp?errMsg="+res.errmsg;
 	}
 }
 	//下单接口,得到平台生成的交易流水号
@@ -33,48 +30,17 @@ function beginToPay() {
 	            "wareId":2,
 	            "wareName":"线下支付一分钱测试",
 	            "cpOrderNo":cpOrderNo,
-	            "price":price,
+	            "applyMoney":price,
 	            "currency":"RMB",
 	            "userId":appUserId,
 	            "cpReInfo":"h5123test",
 	            "notifyUrl": "zypayh5/front/sh/notify!transPaystate?uid=u0001&"
 	        },
 			type : 'POST',
-			dataType : "JSON",
-			success : function(result) {				
-				res = result;
-			}	        
-		});
-		 return res;
-	}
-	//下单接口,得到平台生成的交易流水号
-	function offlineServerOrder(appUserId,cporderid,price) {
-		var res = '';
-		var str = getPathName();
-		if(str==null)return;
-		 $.ajax({
-			async:false,
-			url : "/zypayh5/front/sh/order!getOfflineServerOrder",
-			data :{
-				"uid":"u0001",
-	            "transactionId": cporderid,
-	            "provinceCode":"271",
-	            "appId":"5000001436",
-	            "wareId":"1",
-	            "businessCode":"1111",
-	            "businessHall":"科学大道营业厅",
-	            "operCode":"1004567",
-	            "workOrderType":"1",
-	            "applyMoney":"1",
-	            "wareName":"线下支付一分钱测试",
-	            "currency":"RMB",
-	            "privateInfo":"移动营业厅",
-	            "notifyurl": str +"zypayh5/front/sh/notify!transPaystate"
-	        },
-			type : 'post',
+			async : false,
 			dataType : "json",
-			success : function(result) {				
-				res = result;
+			success : function(result) {
+				res = result.data;
 			}	        
 		});
 		 return res;

@@ -33,8 +33,9 @@ public class OrderController {
 	 * @param orderInfo
 	 * @return
 	 */
-	@RequestMapping(value="/getTransId",method=RequestMethod.POST)
+	@RequestMapping(value="/getTransId",method=RequestMethod.POST,produces="application/json")
 	public String savePayCpOrderInfo(PayCpOrderInfo orderInfo){
+		orderInfo.setPayMoney(orderInfo.getApplyMoney());
 		return orderServiceRemoteService.getTransId(orderInfo);
 	}
 	
@@ -44,11 +45,27 @@ public class OrderController {
 	 * @param platType
 	 * @return
 	 */
-	@RequestMapping(value="/findPayTypeInfoOfAppId",method=RequestMethod.GET)
+	@RequestMapping(value="/findPayTypeInfoOfAppId",method=RequestMethod.GET,produces="application/json")
 	public List<PayTypeInfo> findPayTypeInfoOfAppId(@RequestParam("appId") String appId,@RequestParam("platType") String platType){
 		List<PayTypeInfo> tt = orderServiceRemoteService.findPayTypeInfoOfAppId(appId, platType);
 		return  tt;
 	}
+	
+	@RequestMapping(value="/findOrderInfoByTransId",method=RequestMethod.GET,produces="application/json")
+	public PayCpOrderInfo findOrderInfoByTransId(@RequestParam("transId") String transId){
+		return orderServiceRemoteService.findByTransId(transId);
+	}
+	
+	/**
+	 * 判断指定trans_id的订单是否已经支付
+	 * @param transId
+	 * @return
+	 */
+	@RequestMapping(value="isPayOfTransId",method=RequestMethod.GET,produces="application/json")
+	public boolean isPayOfTransId(@RequestParam("transId") String transId){
+		return orderServiceRemoteService.isPayOfTransId(transId);
+	}
+	
 	
 	/**
 	 * 根据trans_id和应用支付方式关系id获取支付url
@@ -56,7 +73,7 @@ public class OrderController {
 	 * @return
 	 * @throws IOException 
 	 */
-	@RequestMapping(value="/getPayUrl",method=RequestMethod.GET)
+	@RequestMapping(value="/getPayUrl",method=RequestMethod.GET,produces="application/json")
 	public String getPayUrl(@RequestParam("transId") String transId,@RequestParam("cpPayMappingId") String cpPayMappingId,
 			HttpServletResponse httpResponse) throws IOException{
 //		cpPayMappingId = "aeabf77dc04c11e6b00598be94487602";
