@@ -8,6 +8,11 @@ package com.zh.model.entity.configInfo;
 public class PayTypeInfo {
 	
 	/**
+	 * 主键id
+	 */
+	private int id;
+	
+	/**
 	 * 应用编号
 	 */
 	private String appId;
@@ -26,6 +31,14 @@ public class PayTypeInfo {
 	 * 支付方式对应的logo
 	 */
 	private String imageLogoUrl;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getAppId() {
 		return appId;

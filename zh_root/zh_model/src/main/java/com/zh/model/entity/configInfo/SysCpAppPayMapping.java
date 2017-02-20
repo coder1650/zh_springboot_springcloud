@@ -7,11 +7,11 @@ public class SysCpAppPayMapping {
 
     private String appId;
 
-    private String cpMerchantId;
+    private int cpMerchantId;
 
-    private String payChannelId;
+    private int payChannelId;
 
-    private String cpId;
+    private int cpId;
 
     private String cpName;
 
@@ -41,28 +41,28 @@ public class SysCpAppPayMapping {
         this.appId = appId == null ? null : appId.trim();
     }
 
-    public String getCpMerchantId() {
+    public int getCpMerchantId() {
         return cpMerchantId;
     }
 
-    public void setCpMerchantId(String cpMerchantId) {
-        this.cpMerchantId = cpMerchantId == null ? null : cpMerchantId.trim();
+    public void setCpMerchantId(int cpMerchantId) {
+        this.cpMerchantId = cpMerchantId;
     }
 
-    public String getPayChannelId() {
+    public int getPayChannelId() {
         return payChannelId;
     }
 
-    public void setPayChannelId(String payChannelId) {
-        this.payChannelId = payChannelId == null ? null : payChannelId.trim();
+    public void setPayChannelId(int payChannelId) {
+        this.payChannelId = payChannelId;
     }
 
-    public String getCpId() {
+    public int getCpId() {
         return cpId;
     }
 
-    public void setCpId(String cpId) {
-        this.cpId = cpId == null ? null : cpId.trim();
+    public void setCpId(int cpId) {
+        this.cpId = cpId;
     }
 
     public String getCpName() {

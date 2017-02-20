@@ -47,8 +47,9 @@ public class TestFeignController {
 	
 	@RequestMapping(value="/getPayUrl",method=RequestMethod.GET)
 	public String getPayUrl(){
-		String payUrl = aliPayRemoteService.getPayUrl("121212", ChannelCode.ALI_CHANNEL_TYPE.手机网站支付.getType(),"","");
-		return payUrl;
+//		String payUrl = aliPayRemoteService.getPayUrl("121212", ChannelCode.ALI_CHANNEL_TYPE.手机网站支付.getType(),"","");
+//		return payUrl;
+		return null;
 	}
 
 }

@@ -15,7 +15,7 @@ public class SysCpMerchantConfig {
 
     private String partnerId;
     
-    private String appId;
+    private String aliAppId;
 
     private String appSecret;
 
@@ -177,12 +177,14 @@ public class SysCpMerchantConfig {
         this.remark = remark == null ? null : remark.trim();
     }
 
-	public String getAppId() {
-		return appId;
+	
+
+	public String getAliAppId() {
+		return aliAppId;
 	}
 
-	public void setAppId(String appId) {
-		this.appId = appId == null ? null : appId.trim();
+	public void setAliAppId(String aliAppId) {
+		this.aliAppId = aliAppId;
 	}
 
 	public String getAliPubKey() {

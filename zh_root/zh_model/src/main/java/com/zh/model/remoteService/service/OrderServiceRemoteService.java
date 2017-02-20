@@ -13,17 +13,17 @@ import com.zh.model.entity.order.PayCpOrderInfo;
 @FeignClient("zh-service")
 public interface OrderServiceRemoteService {
 	
-	@RequestMapping(value="/orderService/getTransId",method=RequestMethod.POST)
+	@RequestMapping(value="/orderServiceApi/getTransId",method=RequestMethod.POST)
 	public String getTransId(PayCpOrderInfo payCpOrderInfo);
 	
-	@RequestMapping(value="/orderService/getPayUrl",method=RequestMethod.GET)
+	@RequestMapping(value="/orderServiceApi/getPayUrl",method=RequestMethod.GET)
 	public String getPayUrl(@RequestParam("transId") String transId,@RequestParam("cpPayMappingId") String cpPayMappingId);
 	
-	@RequestMapping(value="/orderService/findPayTypeInfoOfAppId",method=RequestMethod.GET)
+	@RequestMapping(value="/orderServiceApi/findPayTypeInfoOfAppId",method=RequestMethod.GET)
 	public List<PayTypeInfo> findPayTypeInfoOfAppId(@RequestParam("appId") String appId,@RequestParam("platType") String platType);
 	
 	
-	@RequestMapping(value="/orderService/findByTransId",method=RequestMethod.GET)
+	@RequestMapping(value="/orderServiceApi/findByTransId",method=RequestMethod.GET)
 	public PayCpOrderInfo findByTransId(@RequestParam("transId") String transId);
 	
 	/**

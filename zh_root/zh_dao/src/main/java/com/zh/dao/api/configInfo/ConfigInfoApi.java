@@ -30,7 +30,7 @@ public class ConfigInfoApi {
 	 * @return
 	 */
 	@RequestMapping(value="/findCpAppPayMappingById",method=RequestMethod.GET,produces="application/json")
-	public SysCpAppPayMapping findCpAppPayMappingById(@RequestParam("id") String id){
+	public SysCpAppPayMapping findCpAppPayMappingById(@RequestParam("id") int id){
 		logger.info("this is test logback log");
 		SysCpAppPayMapping cpApp = channelConfigInfoMapper.findCpAppPayMappingById(id);
 		return cpApp;
@@ -42,7 +42,7 @@ public class ConfigInfoApi {
 	 * @return
 	 */
 	@RequestMapping(value="/findCpMerchantConfigById",method=RequestMethod.GET,produces="application/json")
-	public SysCpMerchantConfig findCpMerchantConfigById(@RequestParam("id") String id){
+	public SysCpMerchantConfig findCpMerchantConfigById(@RequestParam("id") int id){
 		return channelConfigInfoMapper.findCpMerchantConfigById(id);
 	}
 	
@@ -52,7 +52,7 @@ public class ConfigInfoApi {
 	 * @return
 	 */
 	@RequestMapping(value="/findPayChannelConfigById",method=RequestMethod.GET,produces="application/json")
-	public SysPayChannelConfig findPayChannelConfigById(@RequestParam("id") String id){
+	public SysPayChannelConfig findPayChannelConfigById(@RequestParam("id") int id){
 		return channelConfigInfoMapper.findPayChannelConfigById(id);
 	}
 	

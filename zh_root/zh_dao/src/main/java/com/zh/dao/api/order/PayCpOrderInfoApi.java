@@ -29,18 +29,21 @@ public class PayCpOrderInfoApi {
 	/**
 	 * 根据trans_id查询订单信息
 	 * @param transId
-	 * {@link com.zh.model.remoteService.dao.OrderMapperService#findByTransId}
+	 * {@link com.zh.model.remoteService.dao.OrderMapperRemoteService#findByTransId}
 	 * @return
 	 */
 	@RequestMapping(value="findByTransId",method=RequestMethod.GET,produces="application/json")
 	public PayCpOrderInfo findByTransId(@RequestParam("transId") String transId){
-		return payCpOrderInfoMapper.findByTransId(transId);
+		PayCpOrderInfo cpOrder = payCpOrderInfoMapper.findByTransId(transId);
+		cpOrder.setApplyMoney(cpOrder.getApplyMoney() / 100);
+		cpOrder.setPayMoney(cpOrder.getPayMoney()/100);
+		return cpOrder;
 	}
 	
 	/**
 	 * 根据trans_id查询订单支付状态
 	 * @param transId
-	 * {@link com.zh.model.remoteService.dao.OrderMapperService#findPayStateOfOrderByTransId}
+	 * {@link com.zh.model.remoteService.dao.OrderMapperRemoteService#findPayStateOfOrderByTransId}
 	 * @return
 	 */
 	@RequestMapping(value="findPayStateOfOrderByTransId",method=RequestMethod.GET,produces="application/json")

@@ -7,10 +7,10 @@ $(function() {
 		function() {
 			var repayResult=checkPayState();
 			var target = $(".list li").find(".active").parent();
-			var channelcode = target.attr('typeId');
-			if(repayResult){
-				if(channelcode!=null && channelcode!=''){
-					window.location.href = "../beg?payChannelCode="+channelcode+"&transId="+transid;
+			var payMappingId = target.attr('payMappingId');
+			if(!repayResult){
+				if(payMappingId!=null && payMappingId!=''){
+					window.location.href = "../../h5PayApi/getForwardPayUrl?typeId="+payMappingId+"&transId="+transId;
 				}else{
 					return false;
 				}
@@ -62,7 +62,7 @@ if(appId != null && platType != null){
 				if (result.returnCode == '100') {
 					var str='';
 					$(result.data).each(function(index){
-						str+='<li typeId="'+this.payChannelCode+'"><img src="'+this.imageLogoUrl+'"/><a>'+this.payChannelName+'</a><em></em><span></span></li>';
+						str+='<li payMappingId="'+this.id+'"><img src="'+this.imageLogoUrl+'"/><a>'+this.payChannelName+'</a><em></em><span></span></li>';
 						if(index>1){
 							$('.main').find('h3').removeClass();
 						};
@@ -97,8 +97,8 @@ function getOrderInfoBytransId() {
 		dataType : "json",
 		success : function(result) {
 			$('#product').find('span').html(result.data.wareName);
-			$('#money').find('span').html(result.data.payMoney+'元');
-			$('.btnPay').find('span').html(result.data.payMoney+'元');
+			$('#money').find('span').html(result.data.payMoney/100+'元');
+			$('.btnPay').find('span').html(result.data.payMoney/100+'元');
 			cporderInfo = result;
 		}
 	});

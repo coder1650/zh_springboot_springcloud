@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.zh.model.entity.order.PayCpOrderInfo;
 
 @FeignClient("zh-dao")
-public interface OrderMapperService {
+public interface OrderMapperRemoteService {
 	
 	/**
 	 * 查询订单信息

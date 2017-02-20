@@ -3,6 +3,8 @@ package com.zh.model.constant;
 public class ChannelCode {
 	
 	public static final String ALI_CHANNEL_CODE = "1001";
+	public static final String WECHAT_CHANNEL_CODE = "1002";
+	public static final String UNIONPAY_CHANNEL_CODE = "1003";
 	
 	public enum ALI_CHANNEL_TYPE{
 		当面付("100101"),移动支付("100102"),手机网站支付("100103"),即时到账("100104"),批量付款("100105"),扫码付("100106"),条码付("100107"),

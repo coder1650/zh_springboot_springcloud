@@ -15,13 +15,13 @@ import com.zh.model.entity.configInfo.SysPayChannelConfig;
 public interface ChannelConfigInfoMapper {
 	
 	@SelectProvider(type=ChannelConfigInfoSqlProvider.class,method="findCpAppPayMappingById")
-	public SysCpAppPayMapping findCpAppPayMappingById(@Param("id") String id);
+	public SysCpAppPayMapping findCpAppPayMappingById(@Param("id") int id);
 	
 	@SelectProvider(type=ChannelConfigInfoSqlProvider.class,method="findCpMerchantConfigById")
-	public SysCpMerchantConfig findCpMerchantConfigById(@Param("id") String id);
+	public SysCpMerchantConfig findCpMerchantConfigById(@Param("id") int id);
 	
 	@SelectProvider(type=ChannelConfigInfoSqlProvider.class,method="findPayChannelConfigById")
-	public SysPayChannelConfig findPayChannelConfigById(@Param("id") String id);
+	public SysPayChannelConfig findPayChannelConfigById(@Param("id") int id);
 	
 	@SelectProvider(type=ChannelConfigInfoSqlProvider.class,method="findPayTypeInfoOfAppId")
 	public List<PayTypeInfo> findPayTypeInfoOfAppId(@Param("appId") String appId,@Param("platType") String platType);

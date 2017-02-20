@@ -21,6 +21,7 @@ function beginToPay() {
 }
 	//下单接口,得到平台生成的交易流水号
 	function serverOrder(appUserId,cpOrderNo,price) {
+		var applyMoney = parseFloat(price)*100;
 		var res = '';
 		 $.ajax({
 			async:false,
@@ -30,7 +31,7 @@ function beginToPay() {
 	            "wareId":2,
 	            "wareName":"线下支付一分钱测试",
 	            "cpOrderNo":cpOrderNo,
-	            "applyMoney":price,
+	            "applyMoney":applyMoney,
 	            "currency":"RMB",
 	            "userId":appUserId,
 	            "cpReInfo":"h5123test",

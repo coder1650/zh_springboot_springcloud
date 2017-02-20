@@ -16,13 +16,13 @@ import com.zh.model.entity.configInfo.SysPayChannelConfig;
 public interface ConfigInfoMapperRemoteService {
 	
 	@RequestMapping(value="/configInfoApi/findCpAppPayMappingById",method=RequestMethod.GET)
-	public SysCpAppPayMapping findCpAppPayMappingById(@RequestParam("id") String id);
+	public SysCpAppPayMapping findCpAppPayMappingById(@RequestParam("id") int id);
 	
 	@RequestMapping(value="/configInfoApi/findCpMerchantConfigById",method=RequestMethod.GET)
-	public SysCpMerchantConfig findCpMerchantConfigById(@RequestParam("id") String id);
+	public SysCpMerchantConfig findCpMerchantConfigById(@RequestParam("id") int id);
 	
 	@RequestMapping(value="/configInfoApi/findPayChannelConfigById",method=RequestMethod.GET)
-	public SysPayChannelConfig findPayChannelConfigById(@RequestParam("id") String id);
+	public SysPayChannelConfig findPayChannelConfigById(@RequestParam("id") int id);
 	
 	/**
 	 * 根据应用编号查询该应用支持的支付方式

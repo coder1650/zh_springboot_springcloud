@@ -20,7 +20,7 @@ public class PayCpOrderInfo{
 
     private String wareName;
 
-    private double applyMoney;
+    private int applyMoney;
 
     private String currency;
 
@@ -39,8 +39,7 @@ public class PayCpOrderInfo{
     private String channelCode;
 
     private String payChannelCode;
-
-    private double payMoney;
+    private int payMoney;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
@@ -99,11 +98,11 @@ public class PayCpOrderInfo{
         this.wareName = wareName == null ? null : wareName.trim();
     }
 
-    public double getApplyMoney() {
+    public int getApplyMoney() {
         return applyMoney;
     }
 
-    public void setApplyMoney(double applyMoney) {
+    public void setApplyMoney(int applyMoney) {
         this.applyMoney = applyMoney;
     }
 
@@ -179,11 +178,11 @@ public class PayCpOrderInfo{
         this.payChannelCode = payChannelCode == null ? null : payChannelCode.trim();
     }
 
-    public double getPayMoney() {
+    public int getPayMoney() {
         return payMoney;
     }
 
-    public void setPayMoney(double payMoney) {
+    public void setPayMoney(int payMoney) {
         this.payMoney = payMoney;
     }
 
