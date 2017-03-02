@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zh.model.constant.ChannelCode;
 import com.zh.model.demo.User;
 import com.zh.model.entity.order.PayCpOrderInfo;
-import com.zh.model.remoteService.aliService.AliPayRemoteService;
 import com.zh.test.remoteService.FeignRemoteService;
 import com.zh.test.remoteService.UserRemoteService;
 
@@ -21,8 +19,6 @@ public class TestFeignController {
 	private FeignRemoteService feignRemoteService;
 	@Autowired
 	private UserRemoteService userRemoteService;
-	@Autowired
-	private AliPayRemoteService aliPayRemoteService;
 	
 	@RequestMapping(value="/test01",method=RequestMethod.GET)
 	public String test01(){
