@@ -29,6 +29,7 @@ public class H5PayController {
 	public String getForwardPayUrl(@RequestParam("transId") String transId,@RequestParam("typeId") int payMappingId,
 			HttpServletResponse httpResponse) throws IOException{
 		String forwardPayUrl = payServiceRemoteService.getForwardPayUrl(transId,payMappingId);
+		httpResponse.setContentType("text/html;charset=UTF-8");
 		httpResponse.getWriter().write(forwardPayUrl);
 		return null;
 	}
